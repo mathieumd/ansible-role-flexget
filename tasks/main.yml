@@ -10,7 +10,7 @@
     - python-pip
 
 - name: Install Flexget
-  pip: name=flexget state=latest
+  pip: name=flexget state=present
 
 ######################################################################
 # User
