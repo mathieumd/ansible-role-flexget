@@ -1,5 +1,7 @@
 # Ansible role for Flexget
 
+[![Build Status](https://travis-ci.org/mathieumd/ansible-role-flexget.svg)](https://travis-ci.org/mathieumd/ansible-role-flexget)
+
 Ansible role for [Flexget](http://flexget.com/).
 
 Note that [Flexget configuration](http://flexget.com/wiki/Configuration) has to be done manually.
