@@ -1,0 +1,8 @@
+---
+# defaults file for flexget
+
+flexget_user: flexget
+flexget_group: users
+
+flexget_home: /srv/flexget
+

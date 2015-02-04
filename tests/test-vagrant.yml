@@ -1,0 +1,7 @@
+---
+- hosts: flexget
+  remote_user: vagrant
+  roles:
+      - ../../ansible-role-flexget
+
+# vim: ft=ansible

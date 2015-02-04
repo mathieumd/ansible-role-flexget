@@ -1,0 +1,47 @@
+---
+######################################################################
+# Packages
+######################################################################
+
+- name: Install required packages
+  apt: name="{{ item }}" state=present
+  with_items:
+    - python2.7
+    - python-pip
+
+- name: Install Flexget
+  pip: name=flexget state=latest
+
+######################################################################
+# User
+######################################################################
+
+- name: Create user
+  user: name="{{ flexget_user }}" group="{{ flexget_group }}"
+        system=yes state=present
+
+#=====================================================================
+
+- name: Set user's home
+  user: name="{{ flexget_user }}" home="{{ flexget_home }}"
+
+- name: Set right permissions on user's home
+  file: path="{{ flexget_home }}"
+        owner="{{ flexget_user }}" group="{{ flexget_group }}"
+        recurse=yes state=directory
+
+######################################################################
+# Crontab
+######################################################################
+
+- name: Setup crontab
+  cron: name="{{ item.n }}" job="{{ item.j }}"
+        minute="{{ item.m }}" hour="{{ item.h }}"
+        weekday="{{ item.dow }}" day="{{ item.d }}"
+        user="{{ item.u }}"
+  with_items:
+    - { n: "Flexget", j: "/usr/local/bin/flexget --cron execute",
+        m: 0, h: '*/3', dow: '*', d: '*', u: "{{ flexget_user }}" }
+
+
+# vim: ft=ansible
